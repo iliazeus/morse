@@ -14,7 +14,7 @@
         micNode  = null,
         procNode = null;
 
-    var buffer = new Float32Array(BUFFER_SIZE);
+    var buffer = new Float32Array(BUFFER_SIZE).fill(0);
 
     var currentLetter = [],
         lastPulse     = 0,
@@ -71,9 +71,15 @@
         currentLetterDiv.innerText = currentLetter.join('') || ' ';
     };
 
+    var showedWord = false;
+
     var showLetter = function (currentLetter) {
-        var letter = morseTable[currentLetter.join('')] || '?';
-        wholeTextDiv.innerText += letter;
+        if (!currentLetter) showedWord = true;
+        else {
+            var letter = morseTable[currentLetter.join('')] || '?';
+            wholeTextDiv.innerText += (showedWord ? ' ' : '') + letter;
+            showedWord = false;
+        }
     };
 
     var processAudio = function (event) {
@@ -115,8 +121,6 @@
 
             lastPulse = time;
 
-            console.log(currentLetter);
-
         } else if (!isPeak && isLetter) {
             /* letter break */
             var time = Date.now();
@@ -126,7 +130,6 @@
                 showLetter(currentLetter);
                 isLetter = false;
                 currentLetter = [];
-                console.log(currentLetter);
                 displayCurrentLetter(currentLetter);
             }
             
@@ -137,19 +140,17 @@
 
             if (delta > MAX_WORD_BLANK_MILLIS) {
                 isWord = false;
-                showLetter([]);
+                showLetter(false);
+                console.log("word");
             }
         }
     };
 
     var startMic = function (stream) {
-        //gainNode = context.createGain();
         micNode  = context.createMediaStreamSource(stream);
         procNode = context.createAnalyser();
 
         micNode.connect(procNode);
-        //micNode.connect(gainNode);
-        //gainNode.connect(context.destination);
 
         requestAnimationFrame(processAudio);
     };

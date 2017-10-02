@@ -1,5 +1,5 @@
 #current-letter {
-    font-family: sans-serif;
+    font-family: monospace;
     font-size: 48pt;
     font-weight: bold;
     text-align: center;
@@ -10,4 +10,23 @@
     font-family: serif;
     font-size: 24pt;
     text-align: center;
+}
+
+#knock {
+    color: lightgrey;
+}
+
+#morse-table tr td:nth-child(1),
+#morse-table tr td:nth-child(3),
+#morse-table tr td:nth-child(5) {
+    font-family: serif;
+    font-weight: bold;
+    text-align: right;
+}
+
+#morse-table tr td:nth-child(2),
+#morse-table tr td:nth-child(4),
+#morse-table tr td:nth-child(6) {
+    font-family: monospace;
+    text-align: left;
 }
