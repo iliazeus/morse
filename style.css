@@ -1,0 +1,13 @@
+#current-letter {
+    font-family: sans-serif;
+    font-size: 48pt;
+    font-weight: bold;
+    text-align: center;
+    height: 50pt;
+}
+
+#whole-text {
+    font-family: serif;
+    font-size: 24pt;
+    text-align: center;
+}
