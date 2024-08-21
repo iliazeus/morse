@@ -155,10 +155,8 @@
         requestAnimationFrame(processAudio);
     };
 
-    navigator.getUserMedia(
-        { audio: true },
-        startMic,
-        console.log
-    );
+    navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(startMic)
+        .catch(console.log);
 
 }})()
