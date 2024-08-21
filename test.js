@@ -1,4 +1,4 @@
-(function(){document.body.onclick = function() {
+(function(){window.onload = function() { document.body.onclick = function() {
 
     var BUFFER_SIZE = 256,
         THRESHOLD   = null,
@@ -159,4 +159,4 @@
         .then(startMic)
         .catch(console.log);
 
-}})()
+}}})()
