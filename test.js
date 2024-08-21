@@ -1,4 +1,4 @@
-(function(){window.onload = function() {
+(function(){document.body.onclick = function() {
 
     var BUFFER_SIZE = 256,
         THRESHOLD   = null,
